@@ -42,6 +42,8 @@ public class AdminLicenseActivationActivity extends Activity implements OnClickL
 	RadioButton radioAdminButton;
 	RadioButton radioByodButton;
 	boolean isActivityVisible;
+	private final static String demoELMKey = "8869144E74FDED3BBC4536B3B27E4FD2A35B2851E4EE6BCED72F404D4D0E9A75614BCB98A6B82EF45FDAE717D32CF86F75DCB83E9AF87CADD40C5D59508DA8AA";
+	private final static String demoKLMKey = "KLM03-IHJ9C-0HCVX-I2ZK9-DZY64-CWKXP";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,8 @@ public class AdminLicenseActivationActivity extends Activity implements OnClickL
 
 		edtKLM = (EditText) findViewById(R.id.admin_license_activation_edt_klm_key);
 		edtELM = (EditText) findViewById(R.id.admin_license_activation_edt_elm_key);
+		edtKLM.setText(demoKLMKey);
+		edtELM.setText(demoELMKey);
 
 		adminLicensePrefsEditor = getSharedPreferences(SAConstants.MY_PREFS_NAME, MODE_PRIVATE).edit();
 		adminLicensePrefs = getSharedPreferences(SAConstants.MY_PREFS_NAME, MODE_PRIVATE);
@@ -136,8 +140,6 @@ public class AdminLicenseActivationActivity extends Activity implements OnClickL
 			// if Admin and BYOD both are not enabled
 			if (!adminLicensePrefs.getBoolean(SAConstants.ADMIN, false)
 					&& !adminLicensePrefs.getBoolean(SAConstants.BYOD, false)) {
-				edtKLM.setText("");
-				edtELM.setText("");
 				edtKLM.setEnabled(false);
 				edtELM.setEnabled(false);
 				disableButton(btnActivateKLM);
@@ -267,8 +269,6 @@ public class AdminLicenseActivationActivity extends Activity implements OnClickL
 			adminLicensePrefsEditor.putBoolean(SAConstants.ELM, false);
 			adminLicensePrefsEditor.commit();
 			// disable KLM,ELM edittexts and buttons
-			edtKLM.setText("");
-			edtELM.setText("");
 			edtKLM.setEnabled(false);
 			edtELM.setEnabled(false);
 			disableButton(btnActivateKLM);
@@ -350,8 +350,6 @@ public class AdminLicenseActivationActivity extends Activity implements OnClickL
 			adminLicensePrefsEditor.putBoolean(SAConstants.BYOD, false);
 			adminLicensePrefsEditor.commit();
 			// disable KLM,ELM edittexts and buttons
-			edtKLM.setText("");
-			edtELM.setText("");
 			edtKLM.setEnabled(false);
 			edtELM.setEnabled(false);
 			disableButton(btnActivateKLM);

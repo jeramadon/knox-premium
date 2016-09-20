@@ -50,9 +50,17 @@ public class BaseModel implements KNOXApiInvoker {
 		// current context
 		mContext = context;
 		if (BaseModel.mKNOXMgr == null && BaseModel.mEDM == null) {
-			BaseModel.mKNOXMgr = EnterpriseKnoxManager.getInstance();
-			BaseModel.mEDM = (EnterpriseDeviceManager) context
-					.getSystemService(EnterpriseDeviceManager.ENTERPRISE_POLICY_SERVICE);
+			try {
+				BaseModel.mKNOXMgr = EnterpriseKnoxManager.getInstance();
+			} catch (RuntimeException e) {
+				BaseModel.mKNOXMgr = null;
+			}
+			try {
+				BaseModel.mEDM = (EnterpriseDeviceManager) context
+						.getSystemService(EnterpriseDeviceManager.ENTERPRISE_POLICY_SERVICE);
+			} catch (RuntimeException e) {
+				BaseModel.mEDM = null;
+			}
 		}
 	}
 
