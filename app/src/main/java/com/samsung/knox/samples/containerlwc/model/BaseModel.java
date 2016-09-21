@@ -242,6 +242,8 @@ public class BaseModel implements KNOXApiInvoker {
 			}
 
 			klmsMgr.activateLicense(klmsKey, mContext.getPackageName());
+		} catch (NoSuchMethodError e) {
+			Log.e(BaseModel.this.getClass().getSimpleName(), "No activateLicense method");
 		} catch (Exception e) {
 			Log.e(BaseModel.this.getClass().getSimpleName(), e.getMessage());
 		}
@@ -258,6 +260,8 @@ public class BaseModel implements KNOXApiInvoker {
 			}
 
 			elmMgr.activateLicense(elmKey, mContext.getPackageName());
+		} catch (NoSuchMethodError e) {
+			Log.e(BaseModel.this.getClass().getSimpleName(), "No activateLicense method");
 		} catch (Exception e) {
 			Log.e(BaseModel.this.getClass().getSimpleName(), e.getMessage());
 		}
